@@ -1,0 +1,49 @@
+<<<<<<< HEAD
+{ lib, stdenv, fetchFromGitHub, cmake, python3, clang_6 }:
+=======
+{ lib, stdenv, fetchFromGitHub, cmake, python3, ncurses }:
+
+stdenv.mkDerivation rec {
+  pname = "libtapi";
+  version = "1100.0.11"; # determined by looking at VERSION.txt
+>>>>>>> 10e8c6d3239 (libtapi: 1000.10.8 -> 1100.0.11)
+
+stdenv.mkDerivation {
+  name = "libtapi-1000.10.8";
+  src = fetchFromGitHub {
+    owner = "tpoechtrager";
+    repo = "apple-libtapi";
+<<<<<<< HEAD
+    rev = "cd9885b97fdff92cc41e886bba4a404c42fdf71b";
+    sha256 = "1a19h39a48agvnmal99n9j1fjadiqwib7hfzmn342wmgh9z3vk0g";
+=======
+    rev = "664b8414f89612f2dfd35a9b679c345aa5389026";
+    sha256 = "1y1yl46msabfy14z0rln333a06087bk14f5h7q1cdawn8nmvbdbr";
+>>>>>>> 10e8c6d3239 (libtapi: 1000.10.8 -> 1100.0.11)
+  };
+
+  nativeBuildInputs = [ cmake python3 ];
+  buildInputs = [ clang_6.cc ];
+
+  preConfigure = ''
+    cd src/llvm
+  '';
+
+<<<<<<< HEAD
+  cmakeFlags = [ "-DLLVM_INCLUDE_TESTS=OFF" ];
+
+  buildFlags = [ "libtapi" ];
+=======
+  buildFlags = [ "clangBasic" "libtapi" "tapi" ];
+
+  installTargets = [ "install-libtapi" "install-tapi-headers" "install-tapi" ];
+>>>>>>> 10e8c6d3239 (libtapi: 1000.10.8 -> 1100.0.11)
+
+  installTarget = "install-libtapi";
+
+  meta = with lib; {
+    license = licenses.apsl20;
+    maintainers = with maintainers; [ matthewbauer ];
+  };
+
+}
